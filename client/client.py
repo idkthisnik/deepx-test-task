@@ -20,7 +20,7 @@ def send_image(source: str = typer.Option(..., help="Path to the image")) -> dic
 def save_to_csv(response_data: dict) -> None:
     predictions = response_data["predictions"]
     
-    with open("output.csv", mode="w") as f:
+    with open("result/output.csv", mode="w") as f:
         writer = csv.writer(f)
         writer.writerow(["box", "category"])
         for prediction_object in predictions:
@@ -41,7 +41,7 @@ def save_to_jpg(image_path: str, response_data: dict) -> None:
         bounding_box_cords = utils.get_bounding_box_cords(prediction_object)
         draw.text(xy=bounding_box_cords, text=bounding_box_text, font=fnt, fill=category_color)
             
-    image.save("output.jpg")
+    image.save("result/output.jpg")
 
 
 if __name__ == "__main__":
